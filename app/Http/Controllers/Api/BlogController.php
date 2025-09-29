@@ -188,7 +188,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function individualBlog($slug)
     {
         $blog = Blog::where('slug', $slug)->firstOrFail();
         return $blog;
@@ -219,7 +219,7 @@ class BlogController extends Controller
 
 
     // Fetches all categories
-    public function categories()
+    public function category()
     {
         $categories = Blog::select('category')->distinct()->pluck('category');
 

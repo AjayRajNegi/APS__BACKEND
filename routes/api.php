@@ -2,18 +2,17 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\BlogController;
+use App\Http\Controllers\Api\AirportController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
+//Route::apiResource('blogs', BlogController::class);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/blogs',[BlogController::class, 'index']);
+Route::get('/blogs/{slug}', [BlogController::class, 'individualBlog']);
+Route::get('/category', [BlogController::class, 'category']);
+Route::get('/blogs/category/{category}', [BlogController::class, 'byCategory']);
+
+Route::get('/airports',[AirportController::class, 'allAirports']);
+Route::get('/country',[AirportController::class, 'country']);
+Route::get('/airport/{country}',[AirportController::class, 'byCountry']);
+Route::get('/airport/country/{id}',[AirportController::class, 'airport']);
