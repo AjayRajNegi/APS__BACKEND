@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="mb-6">
-    <h1 class="text-2xl font-bold">Create Blog</h1>
+    <h1 class="text-3xl font-bold">Create Blog</h1>
     <p class="text-gray-600">Compose and publish a new blog post. Add rich content blocks as needed.</p>
 </div>
 
@@ -29,7 +29,7 @@
 
     <!-- Basics -->
     <div class="bg-white rounded-xl shadow p-6">
-        <h2 class="text-lg font-semibold mb-4">Basics</h2>
+        <h2 class="text-lg font-semibold mb-2">Basics</h2>
 
         <div class="grid md:grid-cols-2 gap-4">
             <div>
@@ -37,73 +37,71 @@
                 <input type="text" name="title" id="title" required
                     value="{{ old('title') }}"
                     placeholder="Enter the title"
-                    class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+                    class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
+
             </div>
             <div>
                 <label class="text-sm text-gray-600">Slug</label>
                 <input type="text" name="slug" id="slug" required
                     value="{{ old('slug') }}"
                     placeholder="auto-generated-from-title"
-                    class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
-                <div class="text-xs text-gray-500 mt-1">Auto: <span id="slugAuto" class="font-mono"></span></div>
+                    class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
+                <div class="text-xs text-gray-500 ">Auto: <span id="slugAuto" class="font-mono"></span></div>
             </div>
         </div>
 
-        <div class="mt-4">
+        <div >
             <label class="text-sm text-gray-600">Excerpt</label>
             <textarea name="excerpt" placeholder="Short summary (max 500 chars)"
-                class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 min-h-[100px]">{{ old('excerpt') }}</textarea>
+                class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none h-[80px]">{{ old('excerpt') }}</textarea>
         </div>
     </div>
 
     <!-- Publishing -->
     <div class="bg-white rounded-xl shadow p-6">
-        <h2 class="text-lg font-semibold mb-4">Publishing</h2>
+        <h2 class="text-lg font-semibold mb-2">Publishing</h2>
 
         <div class="grid md:grid-cols-2 gap-4">
             <div>
                 <label class="text-sm text-gray-600">Category</label>
-                <input type="text" name="category" id="category" required
-                    value="{{ old('category') }}"
-                    placeholder="Enter the category"
-                    class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+                <select name="category" id="category"  class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" >
+                    <option value="Blog" {{ old('category') === 'draft' ? 'selected' : '' }}>Blog</option>
+                    <option value="Article" {{ old('category') === 'published' ? 'selected' : '' }}>Article</option>
+                    <option value="UGC" {{ old('category') === 'published' ? 'selected' : '' }}>UGC</option>
+                </select>
             </div>
             <div>
                 <label class="text-sm text-gray-600">Published at</label>
                 <input type="datetime-local" name="published_at"
                     value="{{ old('published_at') }}"
-                    class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+                    class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
             </div>
         </div>
     </div>
 
     <!-- Content Blocks -->
     <div class="bg-white rounded-xl shadow p-6">
-        <div class="flex items-center justify-between mb-3">
+        <div class="flex items-center justify-between mb-2">
             <h2 class="text-lg font-semibold">Content Blocks</h2>
             <div class="flex flex-wrap gap-2">
-                <button class="px-3 py-1.5 rounded bg-gray-100 hover:bg-gray-200 text-sm" type="button" data-add="hero">+ Hero</button>
-                <button class="px-3 py-1.5 rounded bg-gray-100 hover:bg-gray-200 text-sm" type="button" data-add="heading">+ Heading</button>
-                <button class="px-3 py-1.5 rounded bg-gray-100 hover:bg-gray-200 text-sm" type="button" data-add="paragraph">+ Paragraph</button>
-                <button class="px-3 py-1.5 rounded bg-gray-100 hover:bg-gray-200 text-sm" type="button" data-add="list">+ List</button>
-                <button class="px-3 py-1.5 rounded bg-gray-100 hover:bg-gray-200 text-sm" type="button" data-add="image">+ Image</button>
-                <button class="px-3 py-1.5 rounded bg-gray-100 hover:bg-gray-200 text-sm" type="button" data-add="quote">+ Quote</button>
-                <button class="px-3 py-1.5 rounded bg-gray-100 hover:bg-gray-200 text-sm" type="button" data-add="callout">+ Callout</button>
-                <button class="px-3 py-1.5 rounded bg-gray-100 hover:bg-gray-200 text-sm" type="button" data-add="problem_solution">+ Problem/Solution</button>
+                <button class="px-3 py-1.5 rounded bg-[#fbfaff] hover:bg-gray-200 border-[1px] border-neutral-200 text-sm" type="button" data-add="hero">+ Hero</button>
+                <button class="px-3 py-1.5 rounded bg-[#fbfaff] hover:bg-gray-200 border-[1px] border-neutral-200 text-sm" type="button" data-add="heading">+ Heading</button>
+                <button class="px-3 py-1.5 rounded bg-[#fbfaff] hover:bg-gray-200 border-[1px] border-neutral-200 text-sm" type="button" data-add="paragraph">+ Paragraph</button>
+                <button class="px-3 py-1.5 rounded bg-[#fbfaff] hover:bg-gray-200 border-[1px] border-neutral-200 text-sm" type="button" data-add="list">+ List</button>
+                <button class="px-3 py-1.5 rounded bg-[#fbfaff] hover:bg-gray-200 border-[1px] border-neutral-200 text-sm" type="button" data-add="image">+ Image</button>
+                <button class="px-3 py-1.5 rounded bg-[#fbfaff] hover:bg-gray-200 border-[1px] border-neutral-200 text-sm" type="button" data-add="quote">+ Quote</button>
+                <button class="px-3 py-1.5 rounded bg-[#fbfaff] hover:bg-gray-200 border-[1px] border-neutral-200 text-sm" type="button" data-add="callout">+ Callout</button>
+                <button class="px-3 py-1.5 rounded bg-[#fbfaff] hover:bg-gray-200 border-[1px] border-neutral-200 text-sm" type="button" data-add="problem_solution">+ Problem/Solution</button>
             </div>
         </div>
 
         <div id="blocks" class="space-y-3">
             {{-- JS will inject content.*[type/data] fields here --}}
         </div>
-
-        <div class="mt-3 text-sm text-gray-500">
-            Tip: Add as many blocks as you need. “Hero” is a top banner (title + optional image).
-        </div>
     </div>
 
     <div class="flex items-center gap-2">
-        <button class="px-5 py-2 rounded bg-indigo-600 text-white font-semibold hover:bg-indigo-700" type="submit">Save Blog</button>
+        <button class="px-5 py-2 rounded-lg bg-indigo-600 text-white font-semibold hover:bg-indigo-700" type="submit">Save Blog</button>
     </div>
 </form>
 @endsection
@@ -210,7 +208,7 @@
              name="content[${i}][data][items][]"
              value="${value ? String(value).replace(/"/g, '&quot;') : ''}"
              placeholder="Bullet point"
-             class="flex-1 rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600 px-3 py-2 text-sm" />
+             class="flex-1 rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none px-3 py-2 text-sm" />
       <button type="button" class="px-3 py-1.5 rounded bg-red-100 text-red-700 text-sm" data-remove-item>Remove</button>
     `;
         itemsWrap.appendChild(row);
@@ -280,27 +278,22 @@
             return head + `
         <label class="text-sm text-gray-600">Hero Title</label>
         <input type="text" data-name="content[__i__][data][title]" name="content[${i}][data][title]"
-               class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+               class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
 
         <label class="text-sm text-gray-600 mt-3">Hero Image (upload)</label>
         <input type="file" accept="image/*" data-name="content[__i__][data][file]" name="content[${i}][data][file]"
-               class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
-        <div class="text-xs text-gray-500 mt-1">Or paste a URL (uploaded image takes priority if both are provided):</div>
+               class="mt-1 w-full rounded" />
 
-        <label class="text-sm text-gray-600 mt-3">Hero Image URL</label>
-        <input type="text" data-name="content[__i__][data][image_url]" name="content[${i}][data][image_url]"
-               placeholder="/storage/blog/hero.jpg or https://..."
-               class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
       `;
         }
         if (type === 'heading') {
             return head + `
         <label class="text-sm text-gray-600">Heading Text</label>
         <input type="text" data-name="content[__i__][data][text]" name="content[${i}][data][text]"
-               class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+               class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
         <label class="text-sm text-gray-600 mt-3">Level</label>
         <select data-name="content[__i__][data][level]" name="content[${i}][data][level]"
-                class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600">
+                class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none">
           <option value="1">H1</option><option value="2" selected>H2</option><option value="3">H3</option><option value="4">H4</option>
         </select>
       `;
@@ -309,31 +302,31 @@
             return head + `
         <label class="text-sm text-gray-600">Paragraph (HTML allowed)</label>
         <textarea data-name="content[__i__][data][html]" name="content[${i}][data][html]" rows="4"
-                  class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600"></textarea>
+                  class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none"></textarea>
       `;
         }
         if (type === 'image') {
             return head + `
         <label class="text-sm text-gray-600">Image file (optional)</label>
         <input type="file" accept="image/*" data-name="content[__i__][data][file]" name="content[${i}][data][file]"
-               class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+               class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
         <div class="text-xs text-gray-500 mt-1">Or paste an image URL:</div>
 
         <label class="text-sm text-gray-600 mt-3">Image URL</label>
         <input type="text" data-name="content[__i__][data][src_url]" name="content[${i}][data][src_url]"
                placeholder="/storage/blog/img.jpg or https://..."
-               class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+               class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
 
         <div class="grid md:grid-cols-2 gap-4 mt-3">
           <div>
             <label class="text-sm text-gray-600">Alt</label>
             <input type="text" data-name="content[__i__][data][alt]" name="content[${i}][data][alt]"
-                   class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+                   class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
           </div>
           <div>
             <label class="text-sm text-gray-600">Caption</label>
             <input type="text" data-name="content[__i__][data][caption]" name="content[${i}][data][caption]"
-                   class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+                   class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
           </div>
         </div>
       `;
@@ -342,23 +335,23 @@
             return head + `
         <label class="text-sm text-gray-600">Quote Text</label>
         <textarea data-name="content[__i__][data][text]" name="content[${i}][data][text]" rows="3"
-                  class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600"></textarea>
+                  class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none"></textarea>
         <label class="text-sm text-gray-600 mt-3">Author (optional)</label>
         <input type="text" data-name="content[__i__][data][author]" name="content[${i}][data][author]"
-               class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+               class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
       `;
         }
         if (type === 'callout') {
             return head + `
         <label class="text-sm text-gray-600">Variant</label>
         <select data-name="content[__i__][data][variant]" name="content[${i}][data][variant]"
-                class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600">
+                class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none">
           <option value="info">Info</option><option value="success">Success</option>
           <option value="warning">Warning</option><option value="danger">Danger</option>
         </select>
         <label class="text-sm text-gray-600 mt-3">HTML</label>
         <textarea data-name="content[__i__][data][html]" name="content[${i}][data][html]" rows="4"
-                  class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600"></textarea>
+                  class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none"></textarea>
       `;
         }
         if (type === 'problem_solution') {
@@ -367,29 +360,29 @@
           <div>
             <label class="text-sm text-gray-600">Number</label>
             <input type="text" data-name="content[__i__][data][number]" name="content[${i}][data][number]"
-                   placeholder="1,2,3..." class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+                   placeholder="1,2,3..." class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
           </div>
           <div class="md:col-span-2">
             <label class="text-sm text-gray-600">Title</label>
             <input type="text" data-name="content[__i__][data][title]" name="content[${i}][data][title]"
                    placeholder="The Endless, Frustrating Search"
-                   class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600" />
+                   class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none" />
           </div>
         </div>
         <label class="text-sm text-gray-600 mt-3">Problem</label>
         <textarea data-name="content[__i__][data][problem]" name="content[${i}][data][problem]" rows="3"
-                  class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600"></textarea>
+                  class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none"></textarea>
 
         <label class="text-sm text-gray-600 mt-3">Solution</label>
         <textarea data-name="content[__i__][data][solution]" name="content[${i}][data][solution]" rows="3"
-                  class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600"></textarea>
+                  class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none"></textarea>
       `;
         }
         if (type === 'list') {
             return head + `
         <label class="text-sm text-gray-600">List style</label>
         <select data-name="content[__i__][data][style]" name="content[${i}][data][style]"
-                class="mt-1 w-full rounded border-gray-300 focus:ring-indigo-600 focus:border-indigo-600">
+                class="mt-1 w-full rounded border-neutral-200 border-[1px] p-2 bg-[#fbfaff] focus:ring-2 ring-indigo-400 ring-offset-2 focus:outline-none">
           <option value="ul" selected>Bulleted (•)</option>
           <option value="ol">Numbered (1.)</option>
         </select>

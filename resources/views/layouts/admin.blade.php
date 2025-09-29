@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
 </head>
 
-<body class="bg-neutral-50 h-full">
+<body class="bg-[#fbfaff] h-full">
 
     <!-- Mobile top bar -->
     <div class="md:hidden sticky top-0 z-40 bg-white/95 backdrop-blur border-b">
