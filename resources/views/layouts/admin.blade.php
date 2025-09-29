@@ -24,6 +24,12 @@
             <div></div>
         </div>
     </div>
+    <form method="POST" action="{{ route('admin.logout') }}">
+    @csrf
+    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">
+        Logout
+    </button>
+</form>
 
     <!-- Fixed Sidebar (desktop) -->
     {{-- <aside class="hidden md:flex fixed inset-y-0 left-0 z-30 w-64 lg:w-72
